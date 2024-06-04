@@ -1,0 +1,131 @@
+<h2>Lista registros de Canguro</h2>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Codigo</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Identificación</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Moneda</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let registroCanguro of registroCanguros">
+      <td>{{ registroCanguro.codigo }}</td>
+      <td>{{ registroCanguro.descripcion }}</td>
+      <td>{{ registroCanguro.direccion }}</td>
+      <td>{{ registroCanguro.identificacion }}</td>
+      <td>{{ registroCanguro.fechaCreacion }}</td>
+      <td>{{ registroCanguro.moneda }}</td>
+      <td>
+        <button
+          class="btn btn-primary"
+          (click)="cargarRegistroSeleccionado(registroCanguro)"
+        >
+          <i class="fas fa-pencil-square"></i>
+        </button>
+        <button
+          class="btn btn-danger"
+          (click)="deleteCanguro(registroCanguro.codigo)"
+        >
+          <i class="fas fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- <div class="d-flex justify-content-center">
+    <pagination-controls (pageChange)="cambiarPagina($event)" previousLabel="Anterior" nextLabel="Siguiente" 
+        (pageSize)="elementosPorPagina" (page)="paginaActual" (totalItems)="totalRegistros"></pagination-controls>
+</div> -->
+
+
+<div class="mt-5">
+  <h2>Registros de Canguro</h2>
+
+  <form class="mt-5" (ngSubmit)="updateCanguro(registroSeleccionado)">
+    <div class="form-group">
+      <label for="formGroupExampleInput">Código</label>
+      <input
+        type="text"
+        class="form-control"
+        id="formCodigo"
+        [(ngModel)]="registroSeleccionado.codigo"
+        name="codigo"
+        placeholder="Codigo"
+        disabled
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="formGroupExampleInput">Descripción</label>
+      <input
+        type="text"
+        class="form-control"
+        id="formDescripcion"
+        maxlength="200"
+        [(ngModel)]="registroSeleccionado.descripcion"
+        name="descripcion"
+        placeholder="Descripción"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="formGroupExampleInput">Dirección</label>
+      <input
+        type="text"
+        class="form-control"
+        id="formDireccion"
+        maxlength="200"
+        [(ngModel)]="registroSeleccionado.direccion"
+        name="direccion"
+        placeholder="Dirección"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="formGroupExampleInput">Identificación</label>
+      <input
+        type="text"
+        class="form-control"
+        id="formIdentificacion"
+        maxlength="40"
+        [(ngModel)]="registroSeleccionado.identificacion"
+        name="identificacion"
+        placeholder="Identificación"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="formGroupExampleInput">Fecha</label>
+      <input
+        type="text"
+        class="form-control"
+        id="formFecha"
+        [(ngModel)]="registroSeleccionado.fechaCreacion"
+        name="fechaCreacion"
+        placeholder="Fecha"
+        disabled
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="formGroupExampleInput">Moneda</label>
+      <input
+        type="text"
+        class="form-control"
+        id="formMoneda"
+        [(ngModel)]="registroSeleccionado.moneda"
+        name="moneda"
+        placeholder="Moneda"
+        disabled
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-5">Actualizar</button>
+  </form>
+</div>
